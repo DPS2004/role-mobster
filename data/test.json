@@ -1,0 +1,23 @@
+{
+  "list" :{
+    "Based Blue": {
+      "id": "917113523052617749"
+    },
+    "Stinky Brown": {
+      "id": "917113434515054632",
+      "subroles": [
+        "Slightly Stinky Orange"
+      ]
+    },
+    "Slightly Stinky Orange": {
+      "id": "917114922494750780"
+    },
+    "Piss Yellow": {
+      "id": "917113297478778910"
+    },
+    "Patient": {
+      "id": "917136668128084008"
+    }
+  },
+  "default": "Patient"
+}

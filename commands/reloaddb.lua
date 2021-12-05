@@ -29,13 +29,32 @@ function command.run(message, mt, overwrite)
     end
 
     print("done loading reactions")
-
     
-
+    _G['roles'] = dpf.loadjson(privatestuff.profile)
+    
+    
+    
     _G['defaultjson'] = {
-      roles = {},
+      roles = {
+        
+      },
+      equipped = roles.default
     }
     
+    defaultjson.roles[roles.default] = true
+    
+    
+    
+    
+    _G['updateroles'] = function (member,uj)
+      for k,v in pairs(roles.list) do
+        if uj.equipped == k then
+          member:addRole(v.id)
+        elseif member:hasRole(v.id) and uj.equipped ~= k then
+          member:removeRole(v.id)
+        end
+      end
+    end
     
 
     _G['botdebug'] = false
@@ -131,6 +150,7 @@ function command.run(message, mt, overwrite)
     addcommand("ping",cmd.ping)
     addcommand("reloaddb",cmd.reloaddb)
     addcommand("runlua",cmd.runlua)
+    addcommand("register",cmd.register)
   
   
     _G['handlemessage'] = function (message, content)
