@@ -150,6 +150,7 @@ function command.run(message, mt, overwrite)
     addcommand("ping",cmd.ping)
     addcommand("reloaddb",cmd.reloaddb)
     addcommand("runlua",cmd.runlua)
+    addcommand("roles",cmd.roles)
     addcommand("register",cmd.register)
   
   
