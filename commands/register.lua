@@ -1,26 +1,17 @@
 local command = {}
 function command.run(message, mt)
   
+  
+  if io.open("savedata/" .. message.author.id .. ".json", "r+") then
+    message.channel:send('You are already registered!')
+    return    
+  end
+  
   local uj = dpf.loadjson("savedata/" .. message.author.id .. ".json",defaultjson)
   local cmember = message.guild:getMember(message.author)
   
-  if inspect(uj) ~= inspect(defaultjson) then
-    message.channel:send('You are already registered!')
-    return
-  end
-  
-  for k,v in pairs(roles.list) do
-    if cmember:hasRole(v.id) then
-      uj.roles[k] = true
-      if v.subroles then
-        for i,s in ipairs(v.subroles) do
-          uj.roles[s] = true
-          
-        end
-      end
-    end
-    
-  end
+  uj = registeruser(cmember,uj)
+   
   updateroles(cmember,uj)
   
   

@@ -1,8 +1,19 @@
 local command = {}
 function command.run(message, mt)
   print(message.author.name .. " did !roles")
-  local uj = dpf.loadjson("savedata/" .. message.author.id .. ".json",defaultjson)
-
+  
+  local uj = nil
+  local cmember = message.guild:getMember(message.author)
+  if io.open("savedata/" .. message.author.id .. ".json", "r+") == nil then
+    print('registring user')
+    uj = dpf.loadjson("savedata/" .. message.author.id .. ".json",defaultjson)
+    uj = registeruser(cmember,uj)
+    updateroles(cmember,uj)
+    dpf.savejson("savedata/" .. message.author.id .. ".json", uj)
+  else
+    uj = dpf.loadjson("savedata/" .. message.author.id .. ".json",defaultjson)
+  end
+  
   local pagenumber = tonumber(mt[1]) and math.floor(mt[1]) or 1
   pagenumber = math.max(1, pagenumber)
 

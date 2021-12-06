@@ -56,6 +56,23 @@ function command.run(message, mt, overwrite)
       end
     end
     
+    _G['registeruser'] = function (member,uj)
+      for k,v in pairs(roles.list) do
+        if member:hasRole(v.id) then
+          uj.roles[k] = true
+          if v.subroles then
+            for i,s in ipairs(v.subroles) do
+              uj.roles[s] = true
+              
+            end
+          end
+        end
+      end
+      
+      return uj
+      
+    end
+    
 
     _G['botdebug'] = false
 
@@ -152,6 +169,7 @@ function command.run(message, mt, overwrite)
     addcommand("runlua",cmd.runlua)
     addcommand("roles",cmd.roles)
     addcommand("register",cmd.register)
+    addcommand("equip",cmd.equip)
   
   
     _G['handlemessage'] = function (message, content)
