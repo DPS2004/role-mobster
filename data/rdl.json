@@ -1,0 +1,103 @@
+{
+  "list" :{
+    "Winner": {
+      "id": "331630636299452446"
+    },
+    "Champion": {
+      "id": "499340789533638658"
+    },
+    "Fallpalooza": {
+      "id": "617494201755631692"
+    },
+    "Fiery Aficionado (ON TOP, WILL BE DELETED!)": {
+      "id": "538179836531834906",
+      "subroles": [
+        "Fiery Aficionado"
+      ]
+    },
+    "Rhythm Master": {
+      "id": "409552655623389185",
+      "subroles": [
+        "Sushi Master"
+      ]
+    },
+    "Sushi Master": {
+      "id": "409551428814635008"
+    },
+    "Rhythm Maestro": {
+      "id": "298698700719521795",
+      "subroles": [
+        "Sushi Maestro"
+      ]
+    },
+    "Sushi Maestro": {
+      "id": "298698201270059009"
+    },
+    "Fiery Aficionado": {
+      "id": "538496816845553704"
+    },
+    
+    "Cafe Champion": {
+      "id": "819428632447287296",
+      "subroles": [
+        "Cafe Regular",
+        "Cafe Visitor"
+      ]
+    },
+    "Cafe Regular": {
+      "id": "517143533853868074",
+      "subroles": [
+        "Cafe Visitor"
+      ]
+    },
+    "Cafe Visitor": {
+      "id": "517143450391543818"
+    },
+    
+    "Competition 5": {
+      "id": "888756055260135424"
+    },
+    "Competition 6": {
+      "id": "888756411725664286"
+    },
+    "Competition 8": {
+      "id": "888757267028148276"
+    },
+    "Competition 9": {
+      "id": "888757389682163722"
+    },
+    "Competition 10": {
+      "id": "888757515360276480"
+    },
+    "Competition 11": {
+      "id": "888757637838143566"
+    },
+    "Competition 12": {
+      "id": "888757768759169074"
+    },
+    "Competition 13": {
+      "id": "888757889785810994"
+    },
+    "Competition 14": {
+      "id": "888757975806775348"
+    },
+    "Competition 15": {
+      "id": "888758067070656552"
+    },
+    "Competition 16": {
+      "id": "888758141511159818"
+    },
+    "Competition 17": {
+      "id": "888758216140419082"
+    },
+    
+    
+    
+    "Patient": {
+      "id": "917218377477525524"
+    }
+    
+    
+  },
+  "default": "Patient"
+}
