@@ -1,4 +1,4 @@
-_G["discordia"] = require('discordia-with-buttons')
+_G["discordia"] = require('discordia')
 _G["client"] = discordia.Client()
 _G["prefix"] = "r!"
 _G["json"] = require('libs/json')
@@ -32,11 +32,6 @@ print("yay got past load ready")
 client:on('messageCreate', function(message)
   handlemessage(message)
 end)
-
-client:on('buttonPressed', function(buttonid, member, message)
-  handlebutton(buttonid, member, message)
-end)
-
 
 client:run(privatestuff.botid)
 

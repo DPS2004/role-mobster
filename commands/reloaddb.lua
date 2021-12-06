@@ -22,29 +22,15 @@ function command.run(message, mt, overwrite)
     end
     
     print("done loading commands")
-
-    for i, v in ipairs(scandir("reactions")) do
-      local filename = string.sub(v, 1, -5)
-      cmdre[filename] = dofile('reactions/' .. v)
-    end
-
-    print("done loading reactions")
     
     _G['roles'] = dpf.loadjson(privatestuff.profile)
     
-    
-    
     _G['defaultjson'] = {
-      roles = {
-        
-      },
+      roles = {},
       equipped = roles.default
     }
     
     defaultjson.roles[roles.default] = true
-    
-    
-    
     
     _G['updateroles'] = function (member,uj)
       for k,v in pairs(roles.list) do
@@ -68,14 +54,10 @@ function command.run(message, mt, overwrite)
           end
         end
       end
-      
       return uj
-      
     end
-    
 
     _G['botdebug'] = false
-
 
     _G['usernametojson'] = function (x)
       print(x)
@@ -94,61 +76,6 @@ function command.run(message, mt, overwrite)
           end
         end
       end
-    end
-    _G['ynbuttons'] = function(message, content, etype, data, yesoption, nooption)
-      yesoption = yesoption or "Yes"
-      nooption = nooption or "No"
-      local messagecontent, messageembed
-      if type(content) == "table" then
-        messageembed = content
-      else
-        messagecontent = content
-      end
-      local newmessage = message.channel:send({
-        embed = messageembed,
-        content = messagecontent,
-        components = {
-          { --whyyyyyy
-            type = 1, -- make button container
-            components = {
-              {
-                type = 2, -- make a button
-                style = 3, -- green
-                label = yesoption, -- add text
-                custom_id = etype .. "_yes",
-                disabled = "false"
-              },
-              {
-                type = 2, -- make a button
-                style = 4, -- red
-                label = nooption, -- add text
-                custom_id = etype .. "_no",
-                disabled = "false"
-              }
-            }
-          } --discord pls
-        }
-      })
-      local tf = dpf.loadjson("savedata/events.json",{})
-      local newevent = {ujf = ("savedata/" .. message.author.id .. ".json") ,etype = etype,ogmessage = {channel = {id = message.channel.id}, id = message.id, author = {name=message.author.name, id=message.author.id,mentionString = message.author.mentionString, avatarURL = message.author.avatarURL}}}
-      for k,v in pairs(data) do
-        newevent[k] = v
-      end
-      tf[newmessage.id] = newevent
-      dpf.savejson("savedata/events.json", tf)
-      if not EMULATOR then
-        if client:waitFor(newmessage.id, 3600 * 1000) then -- Timeout after 1 hour
-          print("Message successfully reacted to, removing event")
-        else
-          print("Button reaction timed out, removing event")
-        end
-      
-        tf = dpf.loadjson("savedata/events.json",{})
-        tf[newmessage.id] = nil
-        dpf.savejson("savedata/events.json", tf)
-      end
-
-      return newmessage
     end
     
     _G['commands'] = {}
@@ -170,7 +97,6 @@ function command.run(message, mt, overwrite)
     addcommand("roles",cmd.roles)
     addcommand("register",cmd.register)
     addcommand("equip",cmd.equip)
-  
   
     _G['handlemessage'] = function (message, content)
       if message.author.id ~= client.user.id or content then
@@ -207,49 +133,14 @@ function command.run(message, mt, overwrite)
         end
       end
     end
-    
-    print("handlebutton")
-    _G['handlebutton'] = function (buttonid, member, message)
-      local ef = dpf.loadjson("savedata/events.json",{})
-      if ef[message.id] then
-        local reaction = {
-          emojiName = "✅",
-          message = message
-        }
-        print("looking for " .. ef[reaction.message.id].etype .. "_no")
-        if buttonid == ef[reaction.message.id].etype .. "_no" then
-          print("reaction is no")
-          reaction.emojiName = "❌"
-        end
 
-        local userid = member.id
-        print('a button named '.. buttonid .. ' was pressed on a message with the id of ' .. reaction.message.id ..' by a user with the id of' .. userid)
-        local eom = ef[reaction.message.id]
-        if eom then
-          print('it is an event message being reacted to')
-          local status, err = pcall(function ()
-            cmdre[eom.etype].run(ef, eom, reaction, userid)
-          end)
-          if not status then
-            print("uh oh")
-            reaction.message.channel:send("Oops! An error has occured! Error message: ```" .. err .. "``` (<@290582109750427648> <@298722923626364928> please fix this thanks)")
-          end
-        end
-      else
-        print("user reacted to a finished button")
-      end
-    end  
-    
-    
     print("done loading")
-    
+
     if not overwrite then
       message.channel:send('All commands have been reloaded.')
     end
-    
 
   else
-    
     message.channel:send('Sorry, but only moderators can use this command!')
   end
   --print(message.author.name .. " did !reloaddb")
