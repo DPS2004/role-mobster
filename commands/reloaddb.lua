@@ -118,6 +118,7 @@ function command.run(message, mt, overwrite)
     addcommand("equip",cmd.equip)
     addcommand("give",cmd.give)
     addcommand("remove",cmd.remove)
+    addcommand("list",cmd.list)
   
     _G['handlemessage'] = function (message, content)
       if message.author.id ~= client.user.id or content then
