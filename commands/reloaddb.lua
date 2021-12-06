@@ -1,11 +1,15 @@
 local command = {}
 function command.run(message, mt, overwrite)
-  local authcheck
+  local authcheck = false
   if overwrite then
     authcheck = true
   else
     local cmember = message.guild:getMember(message.author)
-    authcheck = cmember:hasRole(privatestuff.modroleid)
+    for i,v in ipairs(privatestuff.modroles) do
+      if cmember:hasRole(v) then
+        authcheck = true
+      end
+    end
   end
   if authcheck then
     print("authcheck passed")
