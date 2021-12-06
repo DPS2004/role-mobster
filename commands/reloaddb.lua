@@ -63,6 +63,21 @@ function command.run(message, mt, overwrite)
 
     _G['botdebug'] = false
 
+
+    _G['mentiontoid'] = function (x)
+      local id = nil
+      if '<@!' == string.sub(x,1,3) then
+        id = string.sub(x,4,21)
+      elseif x:match("^%-?%d+$") then
+        id = x
+      end
+      
+      return id
+      
+      
+    end
+    
+    
     _G['usernametojson'] = function (x)
       print(x)
       for i,v in ipairs(scandir("savedata")) do
@@ -101,6 +116,8 @@ function command.run(message, mt, overwrite)
     addcommand("roles",cmd.roles)
     addcommand("register",cmd.register)
     addcommand("equip",cmd.equip)
+    addcommand("give",cmd.give)
+    addcommand("remove",cmd.remove)
   
     _G['handlemessage'] = function (message, content)
       if message.author.id ~= client.user.id or content then
