@@ -41,7 +41,7 @@ function command.run(message, mt)
   end
   
   if request == "" then
-    message.channel:send('I could not find a role called "'..mt[1]..'" in the database. Make sure you spelled it right!')
+    message.channel:send('I could not find a role called "'..mt[2]..'" in the database. Make sure you spelled it right!')
     return
   end
   
