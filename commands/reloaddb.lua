@@ -76,17 +76,13 @@ function command.run(message, mt, overwrite)
 
     _G['mentiontoid'] = function (x)
       local id = nil
-      if '<@!' == string.sub(x,1,3) then
-        id = string.sub(x,4,21)
+      if '<@' == string.sub(x,1,2) then
+        id = x:gsub('[^%d]','')
       elseif x:match("^%-?%d+$") then
         id = x
       end
-      
       return id
-      
-      
     end
-    
     
     _G['usernametojson'] = function (x)
       print(x)
