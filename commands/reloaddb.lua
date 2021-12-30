@@ -34,14 +34,24 @@ function command.run(message, mt, overwrite)
       equipped = roles.default
     }
     
-    defaultjson.roles[roles.default] = true
+    
+    for k,v in pairs(roles.default) do
+      defaultjson.roles[v] = true
+    end
     
     _G['updateroles'] = function (member,uj)
       for k,v in pairs(roles.list) do
-        if uj.equipped == k then
-          member:addRole(v.id)
-        elseif member:hasRole(v.id) and uj.equipped ~= k then
-          member:removeRole(v.id)
+        --print('checking role '..k)
+        for eqslot,eqrole in pairs(uj.equipped) do -- this is fine :)
+          --print('checking eqrole ' .. eqrole)
+          if v.slot == eqslot then --ignore all this upcoming stuff if we are in the wrong slot
+            --print('slots match')
+            if eqrole == k then
+              member:addRole(v.id)
+            elseif member:hasRole(v.id) and eqrole ~= k then
+              member:removeRole(v.id)
+            end
+          end
         end
       end
     end

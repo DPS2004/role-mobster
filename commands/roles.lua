@@ -32,11 +32,11 @@ function command.run(message, mt)
   for k, v in pairs(uj.roles) do
     if v then 
       local eqtext = ""
-      if uj.equipped == k then
+      if uj.equipped[roles.list[k].slot] == k then
         eqtext = " (equipped)"
       end
         
-      table.insert(roletable, "**" .. k .. "**"..eqtext.."\n")
+      table.insert(roletable, "**" .. k .. "** (" .. roles.list[k].slot .. " role)"..eqtext.."\n")
       
     end
   end

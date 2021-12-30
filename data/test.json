@@ -1,23 +1,38 @@
 {
   "list" :{
     "Based Blue": {
-      "id": "917113523052617749"
+      "id": "917113523052617749",
+      "slot": "color"
     },
     "Stinky Brown": {
       "id": "917113434515054632",
+      "slot": "color",
       "subroles": [
         "Slightly Stinky Orange"
       ]
     },
     "Slightly Stinky Orange": {
-      "id": "917114922494750780"
+      "id": "917114922494750780",
+      "slot": "color"
     },
     "Piss Yellow": {
-      "id": "917113297478778910"
+      "id": "917113297478778910",
+      "slot": "color"
+    },
+    "Iconic": {
+      "id": "925961935227351060",
+      "slot": "icon"
+    },
+    "Heiroglyphic": {
+      "id": "925962456239599626",
+      "slot": "icon"
     },
     "Patient": {
-      "id": "917136668128084008"
+      "id": "917136668128084008",
+      "slot": "color"
     }
   },
-  "default": "Patient"
+  "default": {
+    "color": "Patient"
+  }
 }

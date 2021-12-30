@@ -13,6 +13,10 @@ function command.run(message, mt)
     message.channel:send('Sorry, but only moderators can use this command!')
     return
   end
+  if not mt[2] then
+    message.channel:send('Sorry, but this command requires 2 parameters!')
+    return
+  end
   
   
   local giveuserid = mentiontoid(mt[1])
@@ -47,7 +51,7 @@ function command.run(message, mt)
   
   uj.roles[request] = false
   
-  if uj.equipped == request then
+  if uj.equipped[roles.list[request].slot] == request then
     uj.equipped = roles.default
     updateroles(giveuser,uj)
   end

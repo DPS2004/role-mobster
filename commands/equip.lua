@@ -29,14 +29,14 @@ function command.run(message, mt)
     message.channel:send("Sorry, but you don't have the **" .. request.. "** role. You can view a list of the roles you have with `r!roles`.")
     return
   end
-  if uj.equipped == request then
+  if uj.equipped[roles.list[request].slot] == request then
     message.channel:send("You already have that role equipped!")
     return
   end
   
-  uj.equipped = request
+  uj.equipped[roles.list[request].slot] = request
   updateroles(cmember,uj)
-  message.channel:send("Ok, **".. request .."** is now your equipped role!")
+  message.channel:send("Ok, **".. request .."** is now your equipped role for the ".. roles.list[request].slot .." slot!")
   
   
   
